@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+<div class='container'>
+    
+
+    <header class='jumbotron'>
+        <div>
+            <h1>MARK IT DEAL</h1>
+            <p>Enjoy and Share your Shopping Achievements</p>
+            <p>
+                <a class='btn btn-primary btn-lg' href='/new'>Share your Deals</a>
+            </p>
+        </div>
+    </header>
+    
+    <div class='row text-center' id='itemblock'>
+        <% deal.forEach(function(deal){ %>
+            <div class= 'col-md-3 col-sm-6'>
+                <div class='thumbnail'>
+                    <% if(!deal.dealimg){ %>
+                        <img class='img-responsive' src='http://68.media.tumblr.com/tumblr_lx0qalLMrf1qav92co1_500.gif'>
+                    <% } else{ %>
+                        <img class='img-responsive' src='<%= deal.dealimg %>'>
+                    <% } %>
+                    <div class='caption'>
+                        <h4><%= deal.name %></h4>
+                    </div>
+                    <p>
+                        <a href='/deal/<%= deal._id %>' class='btn btn-primary'>Details</a>
+                    </p>
+                </div>
+                
+            </div>
+        <% }); %>
+    </div>
+    
+        
+
+</div>
+<% include ../partials/footer %>

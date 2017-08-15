@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+
+<div class='container'>
+    <div class='col-md-3'>
+        <div class='thumbnail'>
+            <% if(!deal.dealimg){ %>
+                <img class='img-responsive' src='http://68.media.tumblr.com/tumblr_lx0qalLMrf1qav92co1_500.gif'>
+            <% } else{ %>
+                <img class='img-responsive' src='<%= deal.dealimg %>'>
+            <% } %>
+        </div>
+    </div>
+    <div class='col-md-9'>
+        <h1><%= deal.name %></h1>
+        <div class='caption-full'>
+            <h4><a href='<%=deal.dealurl %>'>Link to the Deal</a></h4>
+            <p> <%= deal.description %></p>
+            <p> <em>Submitted By <%= deal.author.username %></em> </p>
+            
+            <% if (currentUser && (deal.author.id.equals(currentUser._id) || currentUser.username=='admin')){ %>
+                <a class='btn btn-xs btn-warning' href='/deal/<%= deal._id %>/edit'>Edit</a>
+                <form class='delete-form' action='/deal/<%= deal._id %>?_method=DELETE' method='POST'>
+                    <button class='btn btn-xs btn-danger'>Delete</button>
+                </form>
+            
+            <% } %>
+            
+        </div>
+    
+        <hr>
+        <div>
+            <div class='text-right' >
+                <a class='btn btn-success' href='/deal/<%= deal._id %>/comments/new' >Add New Comment</a>
+            </div>
+            
+            <% deal.comments.forEach(function(comment){ %>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        
+                        <strong> <%= comment.author.username %> </strong>
+                        <!--<span class='pull-right'>10 days ago</span>-->
+                        <p><%= comment.text %></p>
+                        
+                        <% if (currentUser && (comment.author.id.equals(currentUser._id) || currentUser.username=='admin')){ %>
+                            <a class ='btn btn-xs btn-warning' href='/deal/<%= deal._id %>/comments/<%= comment._id %>/edit'>
+                                Edit
+                            </a>
+                            <form class='delete-form' action='/deal/<%= deal._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
+                                <input type='submit' class='btn btn-xs btn-danger' value='Delete'>
+                            </form>
+                        <% } %>
+                        
+                    </div>
+                </div>
+                
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>
