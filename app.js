@@ -17,7 +17,9 @@ var commentRoutes   =   require("./routes/comments"),
 
 //seedDB();    
 // mongoose.connect('mongodb://localhost/markitdeal', {useMongoClient: true});
-mongoose.connect('mongodb://markjunior:zhanghuaqing@ds159208.mlab.com:59208/yelpcamp_markjunior', {useMongoClient: true});
+mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
+
+
 mongoose.Promise= global.Promise;
 
 app.use(bodyParser.urlencoded({extended: true}));
