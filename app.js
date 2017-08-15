@@ -16,7 +16,7 @@ var commentRoutes   =   require("./routes/comments"),
     authenRoutes      =   require("./routes/authen");
 
 //seedDB();    
-// mongoose.connect('mongodb://localhost/markitdeal', {useMongoClient: true});
+//mongoose.connect('mongodb://localhost/markitdeal', {useMongoClient: true});
 mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
 
 

@@ -4,7 +4,7 @@
 
     <header class='jumbotron'>
         <div>
-            <h1>MARK IT DEAL</h1>
+            <h1><strong>MARK IT DEAL</strong></h1>
             <p>Enjoy and Share your Shopping Achievements</p>
             <p>
                 <a class='btn btn-primary btn-lg' href='/new'>Share your Deals</a>
@@ -17,16 +17,22 @@
             <div class= 'col-md-3 col-sm-6'>
                 <div class='thumbnail'>
                     <% if(!deal.dealimg){ %>
-                        <img class='img-responsive' src='http://68.media.tumblr.com/tumblr_lx0qalLMrf1qav92co1_500.gif'>
+                        <a href='/deal/<%= deal._id %>'>
+                            <img class='img-responsive' src='http://68.media.tumblr.com/tumblr_lx0qalLMrf1qav92co1_500.gif'>
+                        </a>
                     <% } else{ %>
-                        <img class='img-responsive' src='<%= deal.dealimg %>'>
+                        <a href='/deal/<%= deal._id %>'>
+                            <img class='img-responsive' src='<%= deal.dealimg %>'>
+                        </a>
                     <% } %>
                     <div class='caption'>
                         <h4><%= deal.name %></h4>
                     </div>
-                    <p>
+                    
+                    <div class='text-center'>
                         <a href='/deal/<%= deal._id %>' class='btn btn-primary'>Details</a>
-                    </p>
+                        <a href='<%= deal.dealurl %>' class='btn btn-success'>Link</a>
+                    </div>
                 </div>
                 
             </div>
